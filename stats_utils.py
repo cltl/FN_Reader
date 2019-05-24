@@ -140,7 +140,7 @@ def load_frame_relations_as_directed_graph(fn_instance, subset_of_relations=set(
 
     return G
 
-def get_all_successors_of_all_successors(graph, starting_node):
+def get_all_successors_of_all_successors(graph, starting_node, verbose=0):
     """
     given a directed graph, return all
     successors of all successors, i.e., all nodes below the starting node
@@ -154,7 +154,13 @@ def get_all_successors_of_all_successors(graph, starting_node):
     """
     level2successors = defaultdict(set)
     level = 1
-    current_successors = set(graph.successors(starting_node))
+
+    try:
+        current_successors = set(graph.successors(starting_node))
+    except nx.NetworkXError:
+        if verbose >= 2:
+            print(starting_node, 'not found in graph')
+        return {0 : {starting_node}}
 
     while current_successors:
 
