@@ -47,18 +47,12 @@ def get_mapping_lemmapos2frames(fn_instance):
     :param fn_instance:
     :return:
     """
-    lu_name2frame_ids = dict()
-
-    for lu in fn_instance.lus():
-        lu_name2frame_ids[lu.name] = []
+    lu_name2frame_ids = defaultdict(set)
 
     for frame in fn_instance.frames():
-        frame_id = frame.name
-
         for lu, info in frame.lexUnit.items():
-
             # lu -> frames
-            lu_name2frame_ids[info.name].append(frame_id)
+            lu_name2frame_ids[info.name].add(frame.name)
 
     return lu_name2frame_ids
 
