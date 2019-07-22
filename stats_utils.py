@@ -41,6 +41,28 @@ fn = load_framenet(version='1.5')
 assert len(fn.frames()) == 1019
 
 
+def get_mapping_lemmapos2frames(fn_instance):
+    """
+
+    :param fn_instance:
+    :return:
+    """
+    lu_name2frame_ids = dict()
+
+    for lu in fn_instance.lus():
+        lu_name2frame_ids[lu.name] = []
+
+    for frame in fn_instance.frames():
+        frame_id = frame.name
+
+        for lu, info in frame.lexUnit.items():
+
+            # lu -> frames
+            lu_name2frame_ids[info.name].append(frame_id)
+
+    return lu_name2frame_ids
+
+
 def get_dfs_frame_lu_name_relation(fn_instance):
     """
     get two dataframes
