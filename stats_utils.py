@@ -41,6 +41,25 @@ fn = load_framenet(version='1.5')
 assert len(fn.frames()) == 1019
 
 
+def get_mapping_id2frame_label(fn_instance):
+    """
+
+    :param fn_instance:
+    :return:
+    """
+    framelabel2id_ = {}
+    id_2framelabel = {}
+
+    for frame in fn_instance.frames():
+
+        framelabel = frame.name
+        id_ = frame.ID
+
+        framelabel2id_[framelabel] = id_
+        id_2framelabel[id] = framelabel
+
+    return framelabel2id_, id_2framelabel
+
 def get_mapping_lemmapos2frames(fn_instance):
     """
 
