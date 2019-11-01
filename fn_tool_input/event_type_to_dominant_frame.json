@@ -1,0 +1,16 @@
+{
+  "murder" : {
+    "main_frame_labels" : ["Killing", "Offenses"],
+    "subframe_labels" : [
+      "Use_firearm",
+      "Hit_target",
+      "Weapon",
+      "Hostile_encounter",
+      "Cause_harm",
+      "Catastrophe",
+      "Death",
+      "Experience_bodily_harm",
+      "Bearing_arms"
+    ]
+  }
+}
