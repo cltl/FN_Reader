@@ -231,7 +231,7 @@ if __name__ == '__main__':
     verbose = 2
 
     create_tool_input(output_folder='fn_tool_information',
-                      readme_path='FrameNet input to tool.md',
+                      readme_path='fn_tool_input/FrameNet input to tool.md',
                       event_type_to_dominant_frame_path='fn_tool_input/event_type_to_dominant_frame.json',
                       fn_instance=fn,
                       verbose=verbose)
