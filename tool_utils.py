@@ -108,6 +108,7 @@ def get_dominant_frame_info(fn_instance,
                             event_type_to_dominant_frame,
                             pos_in_lu=False,
                             pos_mapping=dict(),
+                            languages={'en', 'it', 'nl'},
                             ):
     """
     load event_type_to_dominant_frame and add for each event_type:
@@ -123,7 +124,10 @@ def get_dominant_frame_info(fn_instance,
 
     for event_type, info in event_type_to_dominant_frame.items():
 
-        event_type_to_dominant_frame[event_type]['lu_to_dominant_frame'] = {}
+        event_type_to_dominant_frame[event_type]['lu_to_dominant_frame'] = {
+            lang : dict()
+            for lang in languages
+        }
         lu_to_frames = defaultdict(set)
 
         for label_key, id_key in [('main_frame_labels', 'main_frame_ids'),
@@ -144,16 +148,9 @@ def get_dominant_frame_info(fn_instance,
 
                 for lu, frames in lu_to_frames.items():
                     if len(frames) == 1:
-                        event_type_to_dominant_frame[event_type]['lu_to_dominant_frame'][lu] = frames.pop()
-
+                        event_type_to_dominant_frame[event_type]['lu_to_dominant_frame']['en'][lu] = frames.pop()
 
     return event_type_to_dominant_frame
-
-
-
-
-
-
 
 
 def create_tool_input(output_folder,
